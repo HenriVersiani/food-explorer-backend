@@ -5,7 +5,7 @@ const DiskStorage = require("../providers/DiskStorage")
 class FoodAvatarController{
     async update(request, response){
         const { plate_id } = request.params
-        console.log(plate_id)
+        console.log('plate_id:', plate_id)
         //const user_id = request.user.id // precisa achar o user e id
         const avatarFileName = request.file.filename // precisa achar o file e filename
        

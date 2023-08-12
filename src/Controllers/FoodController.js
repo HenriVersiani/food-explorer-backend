@@ -29,7 +29,7 @@ class foodController{
         return response.status(201).json(fullFunch)
     }  
 
-    async create(request, response) {         
+    async create(request, response) {        
         const {plateName, price, description, idCategory, tags} = request.body
         const user_id = request.user.id
         const database = await sqliteConnection();
@@ -49,13 +49,15 @@ class foodController{
                     await database.run("INSERT INTO plates_tags (name, id_plate) VALUES (?, ?)" , [tag, data.lastID])
             
                 }) 
+
+                return response.status(201).json(data)
                
             })
             .catch((error) => {
                 throw new AppError("ERRO: ", error)
-            })
+            })            
       
-        return response.status(201).json()
+            return response.status(500).json(new AppError("ERRO: prato não cadastrado"))
     }
 
 
